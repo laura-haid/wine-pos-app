@@ -18,6 +18,22 @@ server.get('/image', (req, res) => {
 
 })
 
+server.get('/wines', (req, res) => {
+  
+  console.log(`Should fetch in the database the wines' information`); // @todo
+  
+  const wines = [
+    {name: 'Cabernet', description: 'Very good', price: 2000},
+    {name: 'Sauvignon', description: 'Amzing', price: 3000}]
+
+  res.status(200).json(
+    {
+      wines: wines,
+      message: "Wines retrieved with success"
+  });
+
+})
+
 server.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 })

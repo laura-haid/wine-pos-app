@@ -7,14 +7,38 @@
 <h1>Buy your Wine Here!</h1>
 <img id="homeimage" src="" alt="lcbo.com" style="width:250px;height:350px;">
 
+
+<h1>Wine 1</h1>
+<p id="wine1name"></p>
+<p id="wine1price"></p>
+
+<h1>Wine 2</h1>
+<p id="wine2name"></p>
+<p id="wine2price"></p>
+
 <script>
 fetch("http://localhost:5000/image")
 .then(async (resp)=>{
     const respBody= await resp.json()
     console.log(respBody)
     const imageURL=respBody.homeUrl
-
     document.getElementById("homeimage").src = imageURL
+})
+.catch((error) => console.error(error))
+
+
+fetch("http://localhost:5000/wines")
+.then(async (resp)=>{
+    const respBody= await resp.json()
+    console.log(respBody)
+    const wines = respBody.wines
+
+
+    document.getElementById("wine1name").innerHTML = wines[0].name
+    document.getElementById("wine1price").innerHTML = wines[0].price
+    
+    document.getElementById("wine2name").innerHTML = wines[1].name
+    document.getElementById("wine2price").innerHTML = wines[1].price
 })
 .catch((error) => console.error(error))
 
