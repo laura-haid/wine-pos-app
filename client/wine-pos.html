@@ -5,6 +5,20 @@
 </head>
 <body>
 <h1>Buy your Wine Here!</h1>
-<img src="https://www.lcbo.com/content/dam/lcbo/products/235671.jpg/jcr:content/renditions/cq5dam.web.1280.1280.jpeg" alt="lcbo.com" style="width:250px;height:350px;">
+<img id="homeimage" src="" alt="lcbo.com" style="width:250px;height:350px;">
+
+<script>
+fetch("http://localhost:5000/image")
+.then(async (resp)=>{
+    const respBody= await resp.json()
+    console.log(respBody)
+    const imageURL=respBody.homeUrl
+
+    document.getElementById("homeimage").src = imageURL
+})
+.catch((error) => console.error(error))
+
+</script>
+
 </body>
 </html>
